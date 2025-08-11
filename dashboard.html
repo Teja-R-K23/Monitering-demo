@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Monitoring Dashboard</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+    h1 {
+        margin-bottom: 30px;
+        color: #00e5ff;
+    }
+    .card {
+        background: rgba(255,255,255,0.05);
+        padding: 20px;
+        border-radius: 15px;
+        width: 300px;
+        margin: 15px auto;
+        box-shadow: 0px 0px 15px rgba(0,255,255,0.2);
+    }
+    .bar {
+        height: 20px;
+        background: linear-gradient(to right, green, yellow, red);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 10px;
+    }
+    .fill {
+        height: 100%;
+        width: 0%;
+        background-color: lime;
+        text-align: right;
+        padding-right: 5px;
+        color: black;
+        font-weight: bold;
+        transition: width 1s;
+    }
+</style>
+</head>
+<body>
+    <h1>☁ Cloud Resource Monitoring</h1>
+
+    <div class="card">
+        <h3>CPU Usage</h3>
+        <div class="bar"><div class="fill" id="cpu"></div></div>
+    </div>
+
+    <div class="card">
+        <h3>Memory Usage</h3>
+        <div class="bar"><div class="fill" id="memory"></div></div>
+    </div>
+
+    <div class="card">
+        <h3>Storage Usage</h3>
+        <div class="bar"><div class="fill" id="storage"></div></div>
+    </div>
+
+<script>
+function randomUsage(id) {
+    let usage = Math.floor(Math.random() * 100) + 1;
+    let bar = document.getElementById(id);
+    bar.style.width = usage + "%";
+    bar.innerText = usage + "%";
+    bar.style.backgroundColor = usage > 80 ? "red" : "lime";
+    if (usage > 80) {
+        alert(id.toUpperCase() + " usage is high! (" + usage + "%)");
+    }
+}
+
+setInterval(() => {
+    randomUsage("cpu");
+    randomUsage("memory");
+    randomUsage("storage");
+}, 3000);
+</script>
+</body>
+</html>
